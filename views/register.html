@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- <link rel="stylesheet" href="./login.css"> -->
+    <style>
+        body{
+            display: flex;
+            height: 100vh;
+            margin: 0px;
+            justify-content: center;
+            align-items: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(190, 199, 199);
+            padding: 50px;
+              border-radius: 10px;  
+        }
+
+        form>input{
+            margin: 4px;
+            padding: 4px;
+            border: none;
+        }
+        button{
+            padding: 4px;
+            background-color: rgb(92, 221, 92);
+            border: none;
+            margin-top: 10px;
+            color: white;
+            font-size: medium;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <form action="/user/register" method="post">
+        <label for="name">Name: </label>
+        <input type="text" name="name"/> 
+        <label for="email">Email: </label>
+        <input type="text" name="email"/>
+        <label for="password">Password: </label>
+        <input type="password" name="password"/>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>
