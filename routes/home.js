@@ -21,6 +21,6 @@ router.get("/secrete",auth,(req,res)=>{
 router.get("/me",auth,(req,res)=>{
     const data=req.user;
     res.send(user);
-})
+});
 
 module.exports=router;
