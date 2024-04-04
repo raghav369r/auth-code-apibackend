@@ -7,6 +7,7 @@ const home = require("./routes/home");
 const user = require("./routes/user");
 const auth = require("./routes/auth");
 const code = require("./routes/code");
+const contest=require("./routes/contest")
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/user", user);
 app.use("/auth", auth);
 app.use("/code", code);
+app.use("/contest", contest);
 
 const uri = process.env.Connection_String;
 mongoose

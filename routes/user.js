@@ -23,7 +23,7 @@ router.post("/register",async(req,res)=>{
         password:hashedpass
     })
     await user.save();
-    const jwttoken=jwt.sign({_id:user._id,name:user.name},process.env.JWTKEY);
+    const jwttoken=jwt.sign({_id:user._id,name:user.name, email:email},process.env.JWTKEY);
     return  res.header("x-auth-token",jwttoken)
                 .header("access-control-expose-headers","x-auth-token")
                 .send({name,email,id:user._id,token:jwttoken}); 
