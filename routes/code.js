@@ -6,12 +6,11 @@ const {RUN_URL}=require("../constants");
 
 
 router.get("/",async(req,res)=>{
-    // console.log("request")
     res.json({name:"hlo bro",val:"value"});
 });
 
 router.post("/run",async(req,res)=>{
-    const {code, language}=req.body;
+    const {code, language, stdin}=req.body;
     const URL=RUN_URL+(language=="py"?"python":language)+"/latest"
     const name="main."+language;
     const headers = {
@@ -19,6 +18,7 @@ router.post("/run",async(req,res)=>{
         "Content-type":"application/json",
     };
       const data = {
+        stdin:stdin,
         files: [
           {
             name: name,

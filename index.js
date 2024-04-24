@@ -7,19 +7,20 @@ const home = require("./routes/home");
 const user = require("./routes/user");
 const auth = require("./routes/auth");
 const code = require("./routes/code");
-const contest=require("./routes/contest")
-
+const contest=require("./routes/contest");
+const problemList=require("./routes/problemList");
 const app = express();
 
 app.use(cors());
 app.use(express.json()); // This line is crucial for parsing JSON request bodies
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
 // app.use("/",home);
 app.use("/user", user);
 app.use("/auth", auth);
 app.use("/code", code);
 app.use("/contest", contest);
+app.use("/problemList", problemList);
 
 const uri = process.env.Connection_String;
 mongoose
@@ -34,7 +35,7 @@ mongoose
 //     .then(()=>console.log("Connected to mongoDb...."))
 //     .catch((e)=>console.log(e));
 
-const port = 3010;
+const port = 3000;
 app.listen(port, (req, res) => {
   console.log(`server running in port: ${port}`);
 });

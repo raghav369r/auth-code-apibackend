@@ -20,7 +20,7 @@ router.post("/login",async(req,res)=>{
     const validpassword=await bcrypt.compare(password,user.password);
     if(!validpassword) return res.status(400).send("Invlid Password");
 
-    const jwttoken=jwt.sign({_id:user._id,name:user.name},process.env.JWTKEY);
+    const jwttoken=jwt.sign({_id:user._id,name:user.name, email:email},process.env.JWTKEY);
     // const filePath = path.join(__dirname, '../views/secrete.html');
     return  res.status(200).send(jwttoken); 
 });
