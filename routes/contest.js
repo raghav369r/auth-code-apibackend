@@ -3,6 +3,7 @@ const router = express.Router();
 const { Contest } = require("../models/contest");
 const Participants = require("../models/participants");
 const { jwtDecode } = require("jwt-decode");
+const { verify } = require("jsonwebtoken");
 require("dotenv").config();
 
 router.get("/", (req, res) => {
@@ -16,7 +17,7 @@ router.get("/join/:urlId", async (req, res) => {
     return;
   }
 
-  const { _id: userid } = jwtDecode(token);
+  const { _id: userid } = await verify(token, process.env.JWTKEY);
   if (!userid) res.status(401).send("invalid token");
   const urlId = req.params.urlId;
   let contest;
@@ -37,7 +38,7 @@ router.get("/join/:urlId", async (req, res) => {
 
 router.post("/create", async (req, res) => {
   //   console.log(req.body);
-  const { name, url, questions, start, end ,owner} = req.body;
+  const { name, url, questions, start, end, owner } = req.body;
   let contest = await Contest.findOne({ url });
   //   console.log(contest);
   if (contest) {
@@ -52,13 +53,13 @@ router.post("/create", async (req, res) => {
       questions: questions,
       start: start,
       end: end,
-      owner:owner,
+      owner: owner,
     });
     const { _id } = await contest.save();
     let participants = new Participants({
       contest_id: _id,
       participants: [],
-    }); 
+    });
     await participants.save();
     res.status(200).send(`Contest cretaed Sucessfully join at: ${url}`);
   } catch (ex) {

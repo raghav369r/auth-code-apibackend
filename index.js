@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json()); // This line is crucial for parsing JSON request bodies
 app.use(express.urlencoded({ extended: true }));
 
-// app.use("/",home);
+app.use("/",home);
 app.use("/user", user);
 app.use("/auth", auth);
 app.use("/code", code);
@@ -35,7 +35,7 @@ mongoose
 //     .then(()=>console.log("Connected to mongoDb...."))
 //     .catch((e)=>console.log(e));
 
-const port = 3000;
+const port = 3010;
 app.listen(port, (req, res) => {
   console.log(`server running in port: ${port}`);
 });
